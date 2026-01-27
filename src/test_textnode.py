@@ -14,20 +14,20 @@ class TestTextNode(unittest.TestCase):
         self.node7 = TextNode('Just plain', TextType.PLAIN, '')
 
     def test_init(self):
-        print('\nTesting initialization')
+        print('\nTesting TextNode initialization')
         self.assertEqual(self.node4.text, 'What a wonderful Italian day')
         self.assertEqual(self.node4.text_type.value, 'italic')
         self.assertEqual(self.node4.url, 'rail.it')
 
     def test_eq(self):
-        print('\nTesting equality method')
+        print('\nTesting TextNode equality method')
         self.assertEqual(self.node, self.node2)
         self.assertNotEqual(self.node, self.node3)
         self.assertNotEqual(self.node4, self.node5)
         self.assertEqual(self.node6, self.node7)
 
     def test_repr(self):
-        print('\nTesting representation')
+        print('\nTesting TextNode representation')
         self.assertEqual(repr(self.node), f'TextNode(This is a text node, bold, {None})')
         self.assertEqual(repr(self.node4), 'TextNode(What a wonderful Italian day, italic, rail.it)')
 
