@@ -1,5 +1,9 @@
 import unittest
-from functions import split_node_delimiter
+from functions import (
+    split_node_delimiter, 
+    extract_markdown_images, 
+    extract_markdown_links
+)
 from textnode import TextType, TextNode
 
 class TestSplitNodeDelimit(unittest.TestCase):
@@ -96,6 +100,38 @@ class TestSplitNodeDelimit(unittest.TestCase):
         with self.assertRaises(
             ValueError, msg='Invalid Markdown syntax'):
             split_node_delimiter([node], '**', TextType.BOLD)
+
+class TestExtract(unittest.TestCase):
+    def setUp(self):
+        self.image = "This is text with an ![image](https://i.imgur.com/zjjcJKZ.png)"
+        self.images = "This is text with a ![rick roll](https://i.imgur.com/aKaOqIh.gif) and ![obi wan](https://i.imgur.com/fJRm4Vk.jpeg)"
+        self.links =  "This is text with a link [to boot dev](https://www.boot.dev) and [to youtube](https://www.youtube.com/@bootdotdev)"
+        self.nill = "Plaalsdkfjas;dlfjasdl;kfjasl sdjfsdkfj23ruewoiuncmvncvcvcmvn,vijfsdjfa"
+        
+    def test_extract_markdown_images(self):
+        print('\nExtract md images')
+        matches = extract_markdown_images(self.images)
+        self.assertListEqual(
+            [
+                ('rick roll', 'https://i.imgur.com/aKaOqIh.gif'),
+                ('obi wan', 'https://i.imgur.com/fJRm4Vk.jpeg')
+            ], matches
+        )
+        match = extract_markdown_images(self.image)
+        self.assertListEqual(
+            [('image', 'https://i.imgur.com/zjjcJKZ.png')],
+            match
+        )
+    
+    def test_extract_markdown_links(self):
+        print('\nExtract md links')
+        matches = extract_markdown_links(self.links)
+        self.assertListEqual(
+            [
+                ('to boot dev', 'https://www.boot.dev'),
+                ('to youtube', 'https://www.youtube.com/@bootdotdev')
+            ], matches
+        )
 
 if __name__ == '__main__':
     unittest.main()
