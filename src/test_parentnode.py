@@ -42,3 +42,6 @@ class TestParentNode(unittest.TestCase):
                 self.body.to_html(),
                 '<body><div><p>Im trying to be </p><b style="size:20;">BOLD</b></div><ul><li>list item</li><li>list item</li><li>list item</li></ul></body>'
                 )
+
+if __name__ == '__main__':
+    unittest.main()

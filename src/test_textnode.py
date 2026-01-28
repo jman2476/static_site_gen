@@ -9,8 +9,8 @@ class TestTextNode(unittest.TestCase):
         self.node3 = TextNode('This is another text node', TextType.BOLD)
         self.node4 = TextNode('What a wonderful Italian day', TextType.ITALIC, url='rail.it')
         self.node5 = TextNode('What a wonderful Italian day', TextType.ITALIC, url='rails.it')
-        self.node6 = TextNode('Just plain', TextType.PLAIN, url='')
-        self.node7 = TextNode('Just plain', TextType.PLAIN, '')
+        self.node6 = TextNode('Just plain', TextType.TEXT, url='')
+        self.node7 = TextNode('Just plain', TextType.TEXT, '')
 
 
     def test_init(self):
@@ -35,7 +35,7 @@ class TestTextNode(unittest.TestCase):
 class TestTextToHTMLNode(unittest.TestCase):
     def setUp(self):
         # test nodes for text_to_html:
-        self.plain = TextNode('Plain text', TextType.PLAIN)
+        self.plain = TextNode('Plain text', TextType.TEXT)
         self.bold = TextNode('Bold text', TextType.BOLD)
         self.italic = TextNode('Italic text', TextType.ITALIC)
         self.code = TextNode('Code block', TextType.CODE)

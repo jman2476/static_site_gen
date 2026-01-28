@@ -7,7 +7,7 @@ def main():
     nodeB = TextNode('hello', TextType.ITALIC)
     nodeC = TextNode('hello', TextType.ITALIC, url='https:')
     nodeD = TextNode('Hello', TextType.BOLD, url='reddit.com')
-    nodeE = TextNode('Oooga booga', TextType.PLAIN, url='google.com')
+    nodeE = TextNode('Oooga booga', TextType.TEXT, url='google.com')
 
     nodes = [nodeA, nodeB, nodeC, nodeD, nodeE]
 
