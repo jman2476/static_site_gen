@@ -1,4 +1,6 @@
 from textnode import TextNode, TextType
+from htmlnode import HTMLNode, LeafNode, ParentNode
+
 
 def main():
     nodeA = TextNode('hello', TextType.ITALIC)
