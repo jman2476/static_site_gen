@@ -16,6 +16,7 @@ def split_node_delimiter(old_nodes, delimiter, text_type):
             new_nodes.append(unsplit)
             continue
         if len(parts) < 3:
+            print('Error causing parts', delimiter, parts)
             raise ValueError('Invalid Markdown syntax')
         start_text = TextNode(parts[0], TextType.TEXT)
         split_text = TextNode(parts[1], text_type) 
@@ -104,10 +105,11 @@ def text_to_textnodes(text):
         ('**', TextType.BOLD),
         ('`', TextType.CODE),
     ]
-    for char, type in delimiters:
-        text_nodes = split_node_delimiter(text_nodes, char, type)
-        
     with_imgs = split_nodes_image(text_nodes)    
     all_nodes = split_nodes_link(with_imgs)
+    
+    for char, type in delimiters:
+        all_nodes = split_node_delimiter(all_nodes, char, type)
+        
 
     return all_nodes

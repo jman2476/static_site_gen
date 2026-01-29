@@ -26,7 +26,7 @@ class LeafNode(HTMLNode):
     def to_html(self):
         if self.value is None:
             if self.__check_empty():
-                return f'<{self.tag}>'
+                return f'<{self.tag}{self.props_to_html()}>'
             else:
                 raise ValueError('Tag empty. Must have value or be valid empty tag')
         if self.tag is None:

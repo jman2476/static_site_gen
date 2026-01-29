@@ -26,7 +26,7 @@ and an invalid code block:
 
 ```const x = 69```
 
-### And quotes:
+### And quotes ![pictur in a header?](https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Ball_python_lucy.JPG/250px-Ball_python_lucy.JPG):
 
 >No man is an island,
 >Entire of itself.
