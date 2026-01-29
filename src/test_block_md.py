@@ -354,10 +354,10 @@ is
             block_types.append(block_to_block_type(block))
         self.assertListEqual(
             [
-                BlockType.UNORDERED_LIST,
-                BlockType.UNORDERED_LIST,
+                BlockType.ULIST,
+                BlockType.ULIST,
                 BlockType.PARAGRAPH,
-                BlockType.ORDERED_LIST,
+                BlockType.OLIST,
                 BlockType.PARAGRAPH,
                 BlockType.PARAGRAPH,
             ],
@@ -402,10 +402,10 @@ is
                 BlockType.QUOTE,
                 BlockType.PARAGRAPH,
                 BlockType.HEADING,
-                BlockType.UNORDERED_LIST,
-                BlockType.UNORDERED_LIST,
+                BlockType.ULIST,
+                BlockType.ULIST,
                 BlockType.PARAGRAPH,
-                BlockType.ORDERED_LIST,
+                BlockType.OLIST,
                 BlockType.PARAGRAPH,
                 BlockType.PARAGRAPH,
             ],

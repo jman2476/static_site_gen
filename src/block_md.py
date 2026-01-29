@@ -6,8 +6,8 @@ class BlockType(Enum):
     HEADING='heading'
     CODE='code'
     QUOTE='quote'
-    UNORDERED_LIST='unordered list'
-    ORDERED_LIST='ordered list'
+    ULIST='unordered list'
+    OLIST='ordered list'
 
 def markdown_to_blocks(markdown):
     blocks = markdown.split('\n\n')
@@ -55,11 +55,11 @@ def block_to_block_type(block):
             check_valid_first_char(lines, '+')
         )
         if minus or plus:
-            return BlockType.UNORDERED_LIST
+            return BlockType.ULIST
     if first_char == '1':
         valid = check_valid_first_char(
             lines, 1, True
         )
         if valid:
-            return BlockType.ORDERED_LIST
+            return BlockType.OLIST
     return BlockType.PARAGRAPH
