@@ -15,7 +15,7 @@ class TestParentNode(unittest.TestCase):
         self.no_child = ParentNode('head', [])
 
     def test_to_html_err(self):
-        print('\nParentNode  to_html errors')
+        #print('\nParentNode  to_html errors')
         with self.assertRaises(
                 ValueError, msg='No tag given for parent'
                 ):
@@ -26,7 +26,7 @@ class TestParentNode(unittest.TestCase):
             self.no_child.to_html()
 
     def test_to_html_children(self):
-        print('\nParentNode  to_html children')
+        #print('\nParentNode  to_html children')
         self.assertEqual(
                 self.div.to_html(),
                 '<div><p>Im trying to be </p><b style="size:20;">BOLD</b></div>'
@@ -37,7 +37,7 @@ class TestParentNode(unittest.TestCase):
                 )
 
     def test_to_html_grandchildren(self):
-        print('\nParentNode  to_html grandchildren')
+        #print('\nParentNode  to_html grandchildren')
         self.assertEqual(
                 self.body.to_html(),
                 '<body><div><p>Im trying to be </p><b style="size:20;">BOLD</b></div><ul><li>list item</li><li>list item</li><li>list item</li></ul></body>'

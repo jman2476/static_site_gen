@@ -10,13 +10,13 @@ class TestLeafNode(unittest.TestCase):
         self.empty = LeafNode('p', None)
         
     def test_init(self):
-        print('\nLeafNode initialization')
+        #print('\nLeafNode initialization')
         self.assertEqual(self.h1.tag, 'h1')
         self.assertEqual(self.h1.value, 'Im a header')
         self.assertEqual(self.h1.props, {'style':'color:red;flex:true'})
 
     def test_to_html(self):
-        print('\nLeafNode to_html')
+        #print('\nLeafNode to_html')
         with self.assertRaises(
                 ValueError,
                 msg='Tag empty. Must have value or be valid empty tag'
@@ -36,7 +36,7 @@ class TestLeafNode(unittest.TestCase):
 
 
     def test_repr(self):
-        print('\nLeafNode repr')
+        #print('\nLeafNode repr')
         self.assertEqual(
                 repr(self.h1),
                 "LeafNode(h1, Im a header, {'style': 'color:red;flex:true'})"

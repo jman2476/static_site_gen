@@ -12,21 +12,21 @@ class TestHTMLNode(unittest.TestCase):
         self.h1 = HTMLNode('h1', 'Hello there')
         
     def test_init(self):
-        print('\nHTMLNode initialization')
+        #print('\nHTMLNode initialization')
         self.assertEqual(self.li2.tag, 'li')
         self.assertEqual(self.li2.value, 'Tasty ')
         self.assertEqual(self.li2.children, [self.node])
         self.assertEqual(self.li2.props, {'id':'3'})
 
     def test_props_to_html(self):
-        print('\nHTMLNode props_to_html')
+        #print('\nHTMLNode props_to_html')
         self.assertEqual(self.node.props_to_html(), ' href="https://www.google.com" height="30"')
         self.assertEqual(self.li1.props_to_html(), ' hidden="false"')
         self.assertEqual(self.li2.props_to_html(), ' id="3"')
         self.assertEqual(self.li3.props_to_html(), ' lang="english"')
 
     def test_repr(self):
-        print('\nHTMLNode repr')
+        #print('\nHTMLNode repr')
         self.assertEqual(repr(self.node), "HTMLNode(a, Bananas, [], {'href': 'https://www.google.com', 'height': '30'})")
         self.assertEqual(repr(self.h1), "HTMLNode(h1, Hello there, None, None)")
 

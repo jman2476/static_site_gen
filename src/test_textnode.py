@@ -14,20 +14,20 @@ class TestTextNode(unittest.TestCase):
 
 
     def test_init(self):
-        print('\nTextNode initialization')
+        #print('\nTextNode initialization')
         self.assertEqual(self.node4.text, 'What a wonderful Italian day')
         self.assertEqual(self.node4.text_type.value, 'italic')
         self.assertEqual(self.node4.url, 'rail.it')
 
     def test_eq(self):
-        print('\nTextNode equality method')
+        #print('\nTextNode equality method')
         self.assertEqual(self.node, self.node2)
         self.assertNotEqual(self.node, self.node3)
         self.assertNotEqual(self.node4, self.node5)
         self.assertEqual(self.node6, self.node7)
 
     def test_repr(self):
-        print('\nTextNode representation')
+        #print('\nTextNode representation')
         self.assertEqual(repr(self.node), f'TextNode(This is a text node, bold, {None})')
         self.assertEqual(repr(self.node4), 'TextNode(What a wonderful Italian day, italic, rail.it)')
 
@@ -51,31 +51,31 @@ class TestTextToHTMLNode(unittest.TestCase):
         self.none = TextNode('None type', None)
 
     def test_plain_to_html(self):
-        print('\nTextToHTML plain')
+        #print('\nTextToHTML plain')
         plain_node = text_node_to_html_node(self.plain)
         self.assertEqual(plain_node.tag, None)
         self.assertEqual(plain_node.value, 'Plain text')
 
     def test_bold_to_html(self):
-        print('\nTextToHTML bold')
+        #print('\nTextToHTML bold')
         bold_node = text_node_to_html_node(self.bold)
         self.assertEqual(bold_node.tag, 'b')
         self.assertEqual(bold_node.value, 'Bold text')
 
     def test_italic_to_html(self):
-        print('\nTextToHTML italic')
+        #print('\nTextToHTML italic')
         italic_node = text_node_to_html_node(self.italic)
         self.assertEqual(italic_node.tag, 'i')
         self.assertEqual(italic_node.value, 'Italic text')
 
     def test_code_to_html(self):
-        print('\nTextToHTML code')
+        #print('\nTextToHTML code')
         code_node = text_node_to_html_node(self.code)
         self.assertEqual(code_node.tag, 'code')
         self.assertEqual(code_node.value, 'Code block')
 
     def test_link_to_html(self):
-        print('\nTextToHTML link')
+        #print('\nTextToHTML link')
         link_node = text_node_to_html_node(self.link)
         self.assertEqual(link_node.tag, 'a')
         self.assertEqual(
@@ -85,7 +85,7 @@ class TestTextToHTMLNode(unittest.TestCase):
             )
         
     def test_img_to_html(self):
-        print('\nTextToHTML image')
+        #print('\nTextToHTML image')
         image_node = text_node_to_html_node(self.image)
         self.assertEqual(image_node.tag, 'img')
         self.assertEqual(image_node.value, None)
@@ -97,7 +97,7 @@ class TestTextToHTMLNode(unittest.TestCase):
             })
         
     def test_none_to_html(self):
-        print('\nTextToHTML none')
+        #print('\nTextToHTML none')
         with self.assertRaises(
             ValueError, msg='Text type not in TextType enum'):
             text_node_to_html_node(self.none)
