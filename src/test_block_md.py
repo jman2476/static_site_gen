@@ -1,8 +1,11 @@
 import unittest
 
-from block_md import markdown_to_blocks
+from block_md import (
+    markdown_to_blocks,
+    block_to_block_type
+)
 
-class TestBlockMarkdown(unittest.TestCase):
+class TestMarkdown2Block(unittest.TestCase):
     def setUp(self):
         self.md = """
 This is **bolded** paragraph
@@ -136,3 +139,7 @@ This is the same paragraph on a new line
                     "- This is a list\n- with items",
                 ]
             )
+        
+class TestBlock2BlockType(unittest.TestCase):
+    def setUp(self):
+        pass
