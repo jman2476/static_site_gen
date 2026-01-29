@@ -48,7 +48,32 @@ This is the same paragraph on a new line
     + Facilisis in pretium nisl aliquet
     - Nulla volutpat aliquam velit
 + Very easy!"""
+        self.empty = """
 
+
+
+
+
+
+"""
+        self.extra_spaces = """
+        
+        
+        This is **bolded** paragraph
+
+This is another paragraph with _italic_ text and `code` here
+This is the same paragraph on a new line
+
+
+
+
+
+
+- This is a list
+- with items
+
+
+"""
     def test_markdown_to_blocks(self):
         blocks = markdown_to_blocks(self.md)
         self.assertEqual(
@@ -96,3 +121,18 @@ This is the same paragraph on a new line
 + Very easy!"""
             ]
         )
+
+    def test_empty_markdown(self):
+        blocks = markdown_to_blocks(self.empty)
+        self.assertEqual(blocks, [])
+
+    def test_extra_spaces_markdown(self):
+        blocks = markdown_to_blocks(self.extra_spaces)
+        self.assertEqual(
+                blocks,
+                [
+                    "This is **bolded** paragraph",
+                    "This is another paragraph with _italic_ text and `code` here\nThis is the same paragraph on a new line",
+                    "- This is a list\n- with items",
+                ]
+            )
