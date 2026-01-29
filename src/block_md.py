@@ -32,7 +32,7 @@ def check_valid_first_char(lines, expected, ordered=False):
                 break
     else:
         for line in lines:
-            if line[0,2] != f'{expected}.':
+            if line[0:2] != f'{expected}.':
                 valid = False
                 break
             expected += 1
@@ -41,7 +41,7 @@ def check_valid_first_char(lines, expected, ordered=False):
 def block_to_block_type(block):
     if len(re.findall(r'^(#{1,6} .+)', block)):
         return BlockType.HEADING
-    if len(re.findall(r'^(`{3})\n.*\n*(`{3}$)', block)):
+    if len(re.findall(r'^(`{3})\n(.*\n)*(`{3}$)', block)):
         return BlockType.CODE
     lines = block_to_lines(block)
     first_char = lines[0][0:1]
