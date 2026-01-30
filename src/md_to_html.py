@@ -92,7 +92,6 @@ def handle_heading(text):
     parent = ParentNode(f'h{level}', [])
     children = _trim_to_htmlnode(split_head[1])
     parent.children.extend(children)
-    print('heading parent', parent)
     return parent
 
 def handle_quote(text):

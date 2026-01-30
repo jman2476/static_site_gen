@@ -1,45 +1,31 @@
-import os, re, shutil
-
-def copy_directory_contents(source, destination, tree_root=True):
-    destination_check = os.path.join(destination, '..')
-    if not os.path.exists(source):
-        raise ValueError('Invalid source path')
-    if not os.path.exists(destination_check):
-        raise ValueError('Invalid destination path: destination parent directory not found')
-    if tree_root:
-        create_empty_public_dir()
-    print(f'Reading [{source}] directory contents')
-    source_dir = os.listdir(source)
-    for entry in source_dir:
-        entry_path = os.path.join(source, entry)
-        dest_path = os.path.join(destination, entry)
-        print(f'Copy path:\n     {entry_path}')
-        print(f'Target path:\n     {dest_path}')
-        if os.path.isfile(entry_path):
-            shutil.copy(entry_path, dest_path)
-        else:
-            os.mkdir(dest_path)
-            copy_directory_contents(entry_path, dest_path, tree_root=False)
-    if tree_root:
-        print('Directory successfully copied')
-
-def delete_public_dir():
-    path = './public'
-    if os.path.exists(path):
-        print('Removing public dir @', path)
-        shutil.rmtree(path)
-    else:
-        print('No public dir to delete')
-    
-def create_empty_public_dir():
-    path = './public'
-    if os.path.exists(path):
-        delete_public_dir()
-    os.mkdir(path)
-    print('Empty public dir successfully created')
+import re, os
+from md_to_html import markdown_to_html_node
 
 def extract_title(markdown):
     title = re.findall(r'^([ |\n]*#{1} .+)', markdown)
     if len(title) == 0:
         raise ValueError('No title found in markdown')
     return title[0].strip('# \n')
+
+def generate_page(from_path, template_path, dest_path):
+    print(f'Generating page from {from_path} to {dest_path} using {template_path}')
+    
+    with open(from_path, 'r') as file:
+        markdown = file.read()
+    
+    with open(template_path, 'r') as file:
+        template = file.read()
+
+    html_node = markdown_to_html_node(markdown)
+    title = extract_title(markdown)
+
+    add_title = template.replace('{{ Title }}', title)
+    html = add_title.replace('{{ Content }}', html_node.to_html())
+        
+    dir_path = '/'.join(dest_path.split('/')[:-1])
+    os.makedirs(dir_path, exist_ok=True)
+    
+    with open(dest_path, 'w') as file:
+        file.write(html)
+
+    print('Generation done')
