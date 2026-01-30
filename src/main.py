@@ -8,4 +8,5 @@ def main():
     copy_directory_contents('./static', './public')
 
 
+
 main()
