@@ -2,12 +2,14 @@ import os, shutil
 
 def copy_directory_contents(source, destination, tree_root=True):
     destination_check = os.path.join(destination, '..')
+    print('dest check',destination_check)
     if not os.path.exists(source):
         raise ValueError('Invalid source path')
     if not os.path.exists(destination_check):
-        raise ValueError('Invalid destination path: destination parent directory not found')
+        os.makedirs(destination)
+        # raise ValueError('Invalid destination path: destination parent directory not found')
     if tree_root:
-        create_empty_public_dir()
+        create_empty_public_dir(destination)
     print(f'Reading [{source}] directory contents')
     source_dir = os.listdir(source)
     for entry in source_dir:
@@ -23,17 +25,16 @@ def copy_directory_contents(source, destination, tree_root=True):
     if tree_root:
         print('Directory successfully copied')
 
-def delete_public_dir():
-    path = './public'
+def delete_target_dir(path):
     if os.path.exists(path):
-        print('Removing public dir @', path)
+        print('Removing target dir @', path)
         shutil.rmtree(path)
     else:
-        print('No public dir to delete')
+        print('No target dir to delete')
     
-def create_empty_public_dir():
-    path = './public'
+def create_empty_public_dir(path):
+
     if os.path.exists(path):
-        delete_public_dir()
+        delete_target_dir(path)
     os.mkdir(path)
-    print('Empty public dir successfully created')
+    print('Empty target dir successfully created')
